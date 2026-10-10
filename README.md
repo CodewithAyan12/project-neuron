@@ -1,16 +1,48 @@
-# React + Vite
+# Project Neuron
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project Neuron is a full-stack AI-powered study assistant built with React + Vite on the frontend and FastAPI on the backend.
 
-Currently, two official plugins are available:
+## Project structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- frontend/ — React application and all UI files
+- backend/ — FastAPI app, database config, and API routes
+- .gitignore — repo ignore rules for env files and build artifacts
 
-## React Compiler
+## Frontend setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Backend setup
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+cd backend
+python -m venv .venv
+# Windows
+.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+## Frontend build
+
+```bash
+cd frontend
+npm run build
+```
+
+## Environment files
+
+- frontend/.env — frontend variables such as VITE_API_URL
+- backend/.env — backend variables such as DATABASE_URL and AI_API_KEY
+
+## Tech stack
+
+- Frontend: React, Vite, React Router, Recharts
+- Backend: FastAPI, SQLAlchemy, Pydantic
+- Database: SQLite by default, with PostgreSQL support available
