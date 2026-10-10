@@ -10,9 +10,11 @@ load_dotenv(dotenv_path=env_path)
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./neuron.db")
 
-# Fix Heroku/Render postgres:// prefix
+# Fix Heroku/Render postgres:// and ensure psycopg3 driver
 if DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+psycopg://", 1)
+elif DATABASE_URL.startswith("postgresql://") and not DATABASE_URL.startswith("postgresql+"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+psycopg://", 1)
 
 # SQLite requires check_same_thread=False
 connect_args = {}
